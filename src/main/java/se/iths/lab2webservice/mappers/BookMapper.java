@@ -31,17 +31,11 @@ public class BookMapper {
         return Optional.of(mapp(optionalBook.get()));
     }
 
-    private List<BookDto> mapp(List<Book> all) {
+    public List<BookDto> mapp(List<Book> all) {
 
         return all
                 .stream()
                 .map(this::mapp)
                 .collect(Collectors.toList());
-
-//        List<BookDto> bookDtoList = new ArrayList<>();
-//        for (var book: all){
-//            bookDtoList.add(mapp(book));
-//        }
-//        return bookDtoList;
     }
 }

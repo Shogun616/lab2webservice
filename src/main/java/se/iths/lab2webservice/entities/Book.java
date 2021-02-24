@@ -4,12 +4,11 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name="Böcker")
+@Table(name="böcker")
 public class Book {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long isbn13;
     private String titel;
     private String Språk;
@@ -51,7 +50,7 @@ public class Book {
     }
 
     public void setSpråk(String språk) {
-        Språk = språk;
+        this.Språk = språk;
     }
 
     public float getPris() {
