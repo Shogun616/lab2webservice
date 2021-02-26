@@ -13,7 +13,7 @@ public class BookControllerTest {
     void callingOneWithValidReturnsOneBook(){
         BookController bookController = new BookController(new TestService());
 
-        var book = bookController.oneBook(1l);
+        var book = bookController.oneBook(1L);
 
         assertThat(book.getIsbn13()).isEqualTo(1);
         assertThat(book.getTitel()).isEqualTo("test");

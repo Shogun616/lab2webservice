@@ -28,19 +28,23 @@ public class BookService implements se.iths.lab2webservice.services.Service{
         return bookMapper.mapp(bookRepository.findAll());
     }
 
+    @Override
     public Optional<BookDto> getOne(Long isbn){
         return bookMapper.mapp(bookRepository.findById(isbn));
     }
 
+    @Override
     public BookDto createBook(BookDto book){
         if(book.getTitel().isEmpty())
             throw new RuntimeException();
         return bookMapper.mapp(bookRepository.save(bookMapper.mapp(book)));
     }
 
+    @Override
     public void delete(Long isbn){
         bookRepository.deleteById(isbn);
     }
+
     @Override
     public BookDto replace(Long isbn, BookDto bookDto) {
         Optional<Book> book = bookRepository.findById(isbn);

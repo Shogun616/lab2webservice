@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "spring.cloud.consul.host",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloud.consul.host."
+    },
+    {
+      "name": "spring.cloud.consul.discovery.register",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloud.consul.discovery.register."
+    },
+    {
+      "name": "spring.cloud.consul.host",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloud.consul.host."
+    },
+    {
+      "name": "spring.cloud.consul.discovery.register",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloud.consul.discovery.register."
+    },
+    {
+      "name": "spring.cloud.consul.discovery.instance-id",
+      "type": "java.lang.String",
+      "description": "Description for spring.cloud.consul.discovery.instance-id."
+    }
+  ] }
