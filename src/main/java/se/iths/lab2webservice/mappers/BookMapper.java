@@ -21,7 +21,7 @@ public class BookMapper {
     }
 
     public Book mapp(BookDto bookDto){
-        return new Book(bookDto.getIsbn13(), bookDto.getTitel(), bookDto.getSpråk(),
+        return new Book((int) bookDto.getIsbn13(), bookDto.getTitel(), bookDto.getSpråk(),
                 bookDto.getPris(), bookDto.getUtgivningsdatum(), bookDto.getKategori());
     }
 

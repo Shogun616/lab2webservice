@@ -41,4 +41,10 @@ public class TestService implements Service{
     public BookDto update(Long isbn, BookTitle bookTitle) {
         return null;
     }
+
+    @Override
+    public List<BookDto> searchByCategory(String searchTerm) {
+        return null;
+    }
+
 }

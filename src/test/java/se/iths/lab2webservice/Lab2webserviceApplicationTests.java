@@ -10,6 +10,7 @@ import se.iths.lab2webservice.dtos.BookDto;
 import org.springframework.http.HttpHeaders;
 
 import java.sql.Date;
+import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,28 +38,15 @@ class Lab2webserviceApplicationTests {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", "application/xml");
 
-        BookDto bookDto = new BookDto(0,"test","test", 0, Date.valueOf("2000-01-01"), "test");
-        var result = testClient.postForEntity("http://localhost:" + port +"/Böcker",bookDto, BookDto.class);
+        BookDto bookDto = new BookDto(1,"test","test", 1, Date.valueOf("2000-01-01"), "test");
+        var result = testClient.postForEntity("http://localhost:" + port +"/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
-    }
 
-    @Test
-    void deleteSomethingFromService(){
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Accept", "application/xml");
+        long resultISBN13 = (Objects.requireNonNull(Objects.requireNonNull(result.getBody())).getIsbn13());
 
+        var verifyPostQuery = testClient.getForEntity("http://localhost:" + port + "/Böcker" + resultISBN13 + "/",
+                BookDto.class);
 
-    }
-
-    @Test
-    void replaceSomethingFromService(){
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Accept", "application/xml");
-    }
-
-    @Test
-    void updateSomethingFromService(){
-        HttpHeaders headers = new HttpHeaders();
-        headers.add("Accept", "application/xml");
+        assertThat(verifyPostQuery.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }

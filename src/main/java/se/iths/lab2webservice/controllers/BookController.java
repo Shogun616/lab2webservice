@@ -50,4 +50,9 @@ public class BookController {
     public BookDto update(@RequestBody BookTitle bookTitle, @PathVariable Long isbn){
         return service.update(isbn, bookTitle);
     }
+
+    @GetMapping("/Böcker/search/{search}")
+    public List<BookDto> searchByCategory(@PathVariable String search){
+        return service.searchByCategory(search);
+    }
 }

@@ -19,4 +19,6 @@ public interface Service {
     BookDto replace(Long isbn, BookDto bookDto);
 
     BookDto update(Long isbn, BookTitle bookTitle);
+
+    List<BookDto> searchByCategory(String searchterm);
 }

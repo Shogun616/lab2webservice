@@ -72,4 +72,10 @@ public class BookService implements se.iths.lab2webservice.services.Service{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Isbn " + isbn + " not found.");
     }
+
+    @Override
+    public List<BookDto> searchByCategory(String searchTerm) {
+        return bookMapper.mapp(bookRepository.findAllByKategori(searchTerm));
+    }
+
 }

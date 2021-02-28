@@ -33,7 +33,7 @@ public class MvcTest {
     private MockMvc mockMvc;
 
     @Autowired
-    ObjectMapper jsonmapper;
+    ObjectMapper jsonMapper;
 
     @Test
     void callingWithBookShouldReturnAllBookAsJson() throws Exception{
@@ -56,10 +56,9 @@ public class MvcTest {
 
         var result = mockMvc.perform(MockMvcRequestBuilders.post("/Böcker")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(jsonmapper.writeValueAsBytes(bookDto))
+                .content(jsonMapper.writeValueAsBytes(bookDto))
                 .accept(MediaType.APPLICATION_JSON)).andReturn();
 
         assertThat(result.getResponse().getStatus()).isEqualTo(201);
     }
-
 }

@@ -13,7 +13,7 @@ public class BookControllerTest {
     void callingOneWithValidReturnsOneBook(){
         BookController bookController = new BookController(new TestService());
 
-        var book = bookController.oneBook(1L);
+        var book = bookController.oneBook(1);
 
         assertThat(book.getIsbn13()).isEqualTo(1);
         assertThat(book.getTitel()).isEqualTo("test");
@@ -28,7 +28,7 @@ public class BookControllerTest {
 
         BookController bookController = new BookController(new TestService());
 
-        var exception = assertThrows(ResponseStatusException.class, () -> bookController.oneBook(2l));
+        var exception = assertThrows(ResponseStatusException.class, () -> bookController.oneBook(2));
         assertThat(exception.getStatus()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }
