@@ -39,7 +39,7 @@ class Lab2webserviceApplicationTests {
         headers.add("Accept", "application/xml");
 
         BookDto bookDto = new BookDto(1,"test","test", 1, Date.valueOf("2000-01-01"), "test");
-        var result = testClient.postForEntity("http://localhost:" + port +"/Böcker", bookDto, BookDto.class);
+        var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
         long resultISBN13 = (Objects.requireNonNull(Objects.requireNonNull(result.getBody())).getIsbn13());
