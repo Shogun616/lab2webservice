@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import se.iths.lab2webservice.dtos.BookDto;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +31,7 @@ class Lab2webserviceApplicationTests {
 
         var result = testClient.getForEntity("http://localhost:" + port +"/Böcker", BookDto[].class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(result.getBody().length).isGreaterThan(0);
+        assertThat(Objects.requireNonNull(result.getBody()).length).isGreaterThan(0);
     }
 
     @Test
@@ -38,15 +39,48 @@ class Lab2webserviceApplicationTests {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", "application/xml");
 
+        BookDto bookDto = new BookDto(1111111111,"test","test", 1, Date.valueOf("2000-01-01"), "test");
+        var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+
+        var verifyPostQuery = testClient.getForEntity("http://localhost:" + port +"/Böcker",
+                BookDto[].class);
+
+        assertThat(verifyPostQuery.getStatusCode()).isEqualTo(HttpStatus.OK);
+    }
+
+    @Test
+    void deleteSomethingFromService(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept", "application/xml");
+
         BookDto bookDto = new BookDto(1,"test","test", 1, Date.valueOf("2000-01-01"), "test");
         var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-        long resultISBN13 = (Objects.requireNonNull(Objects.requireNonNull(result.getBody())).getIsbn13());
+        testClient.delete("http://localhost:" + port + "/Böcker" + "/1");
+        var result2 = testClient.getForEntity("http://localhost:" + port +"/Böcker" + "/1", BookDto[].class);
 
-        var verifyPostQuery = testClient.getForEntity("http://localhost:" + port + "/Böcker" + resultISBN13 + "/",
-                BookDto.class);
+        assertThat(result2.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+    }
 
-        assertThat(verifyPostQuery.getStatusCode()).isEqualTo(HttpStatus.OK);
+    @Test
+    void replaceSomethingFromService(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept", "application/xml");
+
+        BookDto bookDto = new BookDto(1,"test","test", 1, Date.valueOf("2000-01-01"), "test");
+        var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+    }
+
+    @Test
+    void updateSomethingToService(){
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Accept", "application/xml");
+
+        BookDto bookDto = new BookDto(1,"test","test", 1, Date.valueOf("2000-01-01"), "test");
+        var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
+        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 }

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class BookDto {
     private long isbn13;
     private String titel;
-    private String Språk;
+    private String språk;
     private float pris;
     private Date utgivningsdatum;
     private String kategori;
@@ -13,7 +13,7 @@ public class BookDto {
     public BookDto(long isbn13, String titel, String språk, float pris, Date utgivningsdatum, String kategori) {
         this.isbn13 = isbn13;
         this.titel = titel;
-        this.Språk = språk;
+        this.språk = språk;
         this.pris = pris;
         this.utgivningsdatum = utgivningsdatum;
         this.kategori = kategori;
@@ -36,11 +36,11 @@ public class BookDto {
     }
 
     public String getSpråk() {
-        return Språk;
+        return språk;
     }
 
     public void setSpråk(String språk) {
-        this.Språk = språk;
+        this.språk = språk;
     }
 
     public float getPris() {

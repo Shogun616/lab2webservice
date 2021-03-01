@@ -77,4 +77,14 @@ public class BookService implements se.iths.lab2webservice.services.Service{
     public List<BookDto> searchByCategory(String searchTerm) {
         return bookMapper.mapp(bookRepository.findAllByKategori(searchTerm));
     }
+
+    @Override
+    public List<BookDto> searchByCategoryOrLanguage() {
+        return null;
+    }
+
+    @Override
+    public List<BookDto> searchByCategoryOrLanguage(String kategori, String språk) {
+        return null;
+    }
 }
