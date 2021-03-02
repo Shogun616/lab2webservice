@@ -42,7 +42,7 @@ class Lab2webserviceApplicationTests {
         var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-        var verifyPostQuery = testClient.getForEntity("http://localhost:" + port +"/Böcker", BookDto[].class);
+        var verifyPostQuery = testClient.getForEntity("http://localhost:" + port + "/Böcker", BookDto[].class);
 
         assertThat(verifyPostQuery.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
@@ -72,7 +72,8 @@ class Lab2webserviceApplicationTests {
                 + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-     //   testClient.put("http://localhost:" + port + "/Böcker" + "/1" + result + "test2" + 2);
+        testClient.put("http://localhost:" + port + "/Böcker" + "/1", new BookDto(1, "test2", "test2", 2,
+                Date.valueOf("2020-01-01"), "test2"), BookDto.class);
         var result2 = testClient.getForEntity("http://localhost:" + port + "/Böcker" , BookDto[].class);
 
         assertThat(result2.getStatusCode()).isEqualTo(HttpStatus.OK);
@@ -87,8 +88,10 @@ class Lab2webserviceApplicationTests {
         var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-     //   testClient.patchForObject("http://localhost:" + port + "Böcker" + "/1");
-        var result2 = testClient.getForEntity("http://localhost:" + port +"/Böcker", BookDto[].class);
+        testClient.patchForObject("http://localhost:" + port + "/Böcker" + "/1", new BookDto(1, "test2", "test2", 2,
+                Date.valueOf("2020-01-01"), "test2"), BookDto.class);
+
+        var result2 = testClient.getForEntity("http://localhost:" + port + "/Böcker" , BookDto[].class);
 
         assertThat(result2.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
