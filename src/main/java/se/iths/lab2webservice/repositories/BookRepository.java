@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
-    List<Book> findAllByKategori(String kategori);
 
-    List<Book> findAllBySpråkAndKategori(String kategori, String språk);
+    List<Book> findAllBySpråkOrKategoriOrTitel(String språk, String kategori, String titel);
 }

@@ -52,7 +52,7 @@ public class BookController {
     }
 
     @GetMapping("/Böcker/search/{search}")
-    public List<BookDto> searchByCategory(@PathVariable String search){
-        return service.searchByCategory(search);
+    public List<BookDto> searchByCategoryOrLanguageOrTitle(@PathVariable String search){
+        return service.searchByCategoryOrLanguageOrTitle(search);
     }
 }

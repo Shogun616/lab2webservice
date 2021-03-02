@@ -20,9 +20,5 @@ public interface Service {
 
     BookDto update(Long isbn, BookTitle bookTitle);
 
-    List<BookDto> searchByCategory(String searchterm);
-
-    List<BookDto> searchByCategoryOrLanguage();
-
-    List<BookDto> searchByCategoryOrLanguage(String kategori, String språk);
+    List<BookDto> searchByCategoryOrLanguageOrTitle(String searcher);
 }

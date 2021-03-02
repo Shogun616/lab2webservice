@@ -43,17 +43,7 @@ public class TestService implements Service{
     }
 
     @Override
-    public List<BookDto> searchByCategory(String searchterm) {
-        return null;
-    }
-
-    @Override
-    public List<BookDto> searchByCategoryOrLanguage() {
-        return null;
-    }
-
-    @Override
-    public List<BookDto> searchByCategoryOrLanguage(String kategori, String språk) {
+    public List<BookDto> searchByCategoryOrLanguageOrTitle(String searcher) {
         return null;
     }
 }
