@@ -1,11 +1,13 @@
 package se.iths.lab2webservice;
 
+import org.aspectj.lang.annotation.Before;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import se.iths.lab2webservice.dtos.BookDto;
 import org.springframework.http.HttpHeaders;
 
@@ -42,7 +44,7 @@ class Lab2webserviceApplicationTests {
         var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-        var verifyPostQuery = testClient.getForEntity("http://localhost:" + port + "/Böcker", BookDto[].class);
+        var verifyPostQuery = testClient.getForEntity("http://localhost:" + port + "/Böcker" + "/1111111111", BookDto.class);
 
         assertThat(verifyPostQuery.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
@@ -56,10 +58,10 @@ class Lab2webserviceApplicationTests {
         var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-        testClient.delete("http://localhost:" + port + "/Böcker" + "/1");
-        var result2 = testClient.getForEntity("http://localhost:" + port + "/Böcker" , BookDto[].class);
+        testClient.delete("http://localhost:" + port + "/Böcker" + "/1", BookDto.class);
+        var verifyDeleteQuery = testClient.getForEntity("http://localhost:" + port + "/Böcker" + "/1", BookDto.class);
 
-        assertThat(result2.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(verifyDeleteQuery.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 
     @Test
@@ -72,11 +74,12 @@ class Lab2webserviceApplicationTests {
                 + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-        testClient.put("http://localhost:" + port + "/Böcker" + "/1", new BookDto(1, "test2", "test2", 2,
-                Date.valueOf("2020-01-01"), "test2"), BookDto.class);
-        var result2 = testClient.getForEntity("http://localhost:" + port + "/Böcker" , BookDto[].class);
+        testClient.put("http://localhost:" + port + "/Böcker" + "/1", new BookDto(1, "test2",
+                "test2", 2, Date.valueOf("2020-01-01"), "test2"), BookDto.class);
+        var verifyPutQuery = testClient.getForEntity("http://localhost:" + port + "/Böcker" + "/1",
+                BookDto.class);
 
-        assertThat(result2.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(verifyPutQuery.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
     @Test
@@ -84,15 +87,15 @@ class Lab2webserviceApplicationTests {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Accept", "application/xml");
 
-        BookDto bookDto = new BookDto(2,"test","test", 1, Date.valueOf("2000-01-01"), "test");
+        BookDto bookDto = new BookDto(1,"test","test", 1, Date.valueOf("2000-01-01"), "test");
         var result = testClient.postForEntity("http://localhost:" + port + "/Böcker", bookDto, BookDto.class);
         assertThat(result.getStatusCode()).isEqualTo(HttpStatus.CREATED);
 
-        testClient.patchForObject("http://localhost:" + port + "/Böcker" + "/1", new BookDto(1, "test2", "test2", 2,
-                Date.valueOf("2020-01-01"), "test2"), BookDto.class);
+        testClient.patchForObject("http://localhost:" + port + "/Böcker" + "/1", new BookDto(1, "test3", "test", 1,
+                Date.valueOf("2000-01-01"), "test"), BookDto.class);
 
-        var result2 = testClient.getForEntity("http://localhost:" + port + "/Böcker" , BookDto[].class);
+        var verifyPatchQuery = testClient.getForEntity("http://localhost:" + port + "/Böcker" + "/1", BookDto.class);
 
-        assertThat(result2.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(verifyPatchQuery.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 }
