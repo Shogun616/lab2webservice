@@ -7,7 +7,6 @@ import java.sql.Date;
 @Table(name="böcker")
 public class Book {
 
-
     @Id
     private long isbn13;
     private String titel;
