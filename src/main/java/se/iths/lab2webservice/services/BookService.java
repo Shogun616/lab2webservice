@@ -16,7 +16,7 @@ import java.util.Optional;
 public class BookService implements se.iths.lab2webservice.services.Service{
 
     private final BookMapper bookMapper;
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
 
     public BookService(BookRepository bookRepository, BookMapper bookMapper) {
         this.bookRepository = bookRepository;
