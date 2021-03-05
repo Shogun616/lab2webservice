@@ -82,7 +82,7 @@ public class BookService implements se.iths.lab2webservice.services.Service{
 
 //
 //    @Override
-//    public List<BookDto> search(String search) {
-//        return bookMapper.mapp(bookRepository.findAllByIsbn13orSpråkOrKategoriOrTitelOrPris(search));
+//    public List<BookDto> search(String search, float price) {
+//        return bookMapper.mapp(bookRepository.findAllBySpråkOrKategoriOrTitelOrPris(search, search, search, pris));
 //    }
 }

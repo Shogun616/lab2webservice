@@ -24,5 +24,5 @@ public interface Service {
 
     ResponseEntity<List<BookDto>> searchBooks(Specification<BookDto> specification);
 
-//    List<BookDto> search(Long isbn, String searcher, long search, float price);
+//    List<BookDto> search(String searcher, float price);
 }

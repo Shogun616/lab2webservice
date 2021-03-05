@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor {
-//    List<Book> findAllByIsbn13orSpråkOrKategoriOrTitelOrPris(long isbn13, String språk, String katgori, String titel, float pris);
+//    List<Book> findAllBySpråkOrKategoriOrTitelOrPris(String språk, String katgori, String titel, float pris);
 }
