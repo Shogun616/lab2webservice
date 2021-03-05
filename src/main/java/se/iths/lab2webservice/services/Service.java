@@ -1,5 +1,7 @@
 package se.iths.lab2webservice.services;
 
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.ResponseEntity;
 import se.iths.lab2webservice.dtos.BookDto;
 import se.iths.lab2webservice.dtos.BookTitle;
 
@@ -19,6 +21,8 @@ public interface Service {
     BookDto replace(Long isbn, BookDto bookDto);
 
     BookDto update(Long isbn, BookTitle bookTitle);
+
+    ResponseEntity<List<BookDto>> searchBooks(Specification<BookDto> specification);
 
     List<BookDto> searchByCategoryOrLanguageOrTitle(String searcher);
 }

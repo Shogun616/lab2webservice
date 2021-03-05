@@ -1,6 +1,8 @@
 package se.iths.lab2webservice.services;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import se.iths.lab2webservice.dtos.BookDto;
@@ -72,6 +74,12 @@ public class BookService implements se.iths.lab2webservice.services.Service{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     "Isbn " + isbn + " not found.");
     }
+
+    @Override
+    public ResponseEntity<List<BookDto>> searchBooks(Specification<BookDto> specification) {
+        return new ResponseEntity(bookRepository.findAll(Specification.where(specification)), HttpStatus.OK);
+    }
+
 
     @Override
     public List<BookDto> searchByCategoryOrLanguageOrTitle(String searcher) {

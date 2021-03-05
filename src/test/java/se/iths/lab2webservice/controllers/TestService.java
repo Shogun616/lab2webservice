@@ -1,5 +1,7 @@
 package se.iths.lab2webservice.controllers;
 
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.ResponseEntity;
 import se.iths.lab2webservice.dtos.BookDto;
 import se.iths.lab2webservice.dtos.BookTitle;
 import se.iths.lab2webservice.services.Service;
@@ -39,6 +41,11 @@ public class TestService implements Service{
 
     @Override
     public BookDto update(Long isbn, BookTitle bookTitle) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<List<BookDto>> searchBooks(Specification<BookDto> specification) {
         return null;
     }
 

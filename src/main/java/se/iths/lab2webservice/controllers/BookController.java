@@ -1,6 +1,9 @@
 package se.iths.lab2webservice.controllers;
 
+import com.sipios.springsearch.anotation.SearchSpec;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import se.iths.lab2webservice.dtos.BookDto;
@@ -51,8 +54,13 @@ public class BookController {
         return service.update(isbn, bookTitle);
     }
 
+    @GetMapping("/Böcker/search")
+    public ResponseEntity<List<BookDto>> searchBooks(@SearchSpec Specification<BookDto> specification){
+            return service.searchBooks(specification);
+    }
+
     @GetMapping(value = "/Böcker/search={search}")
     public List<BookDto> searchByCategoryOrLanguageOrTitle(@PathVariable String search){
-            return service.searchByCategoryOrLanguageOrTitle(search);
+        return service.searchByCategoryOrLanguageOrTitle(search);
     }
 }
