@@ -51,7 +51,7 @@ public class BookController {
         return service.update(isbn, bookTitle);
     }
 
-    @GetMapping("/Böcker/search/{search}")
+    @GetMapping(value = "/Böcker/search={search}")
     public List<BookDto> searchByCategoryOrLanguageOrTitle(@PathVariable String search){
             return service.searchByCategoryOrLanguageOrTitle(search);
     }
