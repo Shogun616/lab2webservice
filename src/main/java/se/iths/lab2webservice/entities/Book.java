@@ -10,15 +10,15 @@ public class Book {
     @Id
     private long isbn13;
     private String titel;
-    private String språk;
+    private String language;
     private float pris;
     private Date utgivningsdatum;
     private String kategori;
 
-    public Book(long isbn13, String titel, String språk, float pris, Date utgivningsdatum, String kategori) {
+    public Book(long isbn13, String titel, String language, float pris, Date utgivningsdatum, String kategori) {
         this.isbn13 = isbn13;
         this.titel = titel;
-        this.språk = språk;
+        this.language = language;
         this.pris = pris;
         this.utgivningsdatum = utgivningsdatum;
         this.kategori = kategori;
@@ -44,12 +44,12 @@ public class Book {
         this.titel = titel;
     }
 
-    public String getSpråk() {
-        return språk;
+    public String getLanguage() {
+        return language;
     }
 
-    public void setSpråk(String språk) {
-        this.språk = språk;
+    public void setLanguage(String språk) {
+        this.language = språk;
     }
 
     public float getPris() {

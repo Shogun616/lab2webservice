@@ -1,6 +1,5 @@
 package se.iths.lab2webservice.mappers;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 import se.iths.lab2webservice.dtos.BookDto;
 import se.iths.lab2webservice.entities.Book;
@@ -16,12 +15,12 @@ public class BookMapper {
     }
 
     public BookDto mapp(Book book){
-        return new BookDto(book.getIsbn13(), book.getTitel(), book.getSpråk(),
+        return new BookDto(book.getIsbn13(), book.getTitel(), book.getLanguage(),
                 book.getPris(), book.getUtgivningsdatum(), book.getKategori());
     }
 
     public Book mapp(BookDto bookDto){
-        return new Book((int) bookDto.getIsbn13(), bookDto.getTitel(), bookDto.getSpråk(),
+        return new Book((int) bookDto.getIsbn13(), bookDto.getTitel(), bookDto.getLanguage(),
                 bookDto.getPris(), bookDto.getUtgivningsdatum(), bookDto.getKategori());
     }
 

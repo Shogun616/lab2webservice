@@ -48,9 +48,9 @@ public class TestService implements Service{
     public ResponseEntity<List<BookDto>> searchBooks(Specification<BookDto> specification) {
         return null;
     }
-
-    @Override
-    public List<BookDto> searchByCategoryOrLanguageOrTitle(String searcher) {
-        return null;
-    }
+//
+//    @Override
+//    public List<BookDto> search(Long isbn, String searcher, long search, float price) {
+//        return null;
+//    }
 }

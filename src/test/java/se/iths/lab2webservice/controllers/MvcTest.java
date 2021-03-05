@@ -37,7 +37,7 @@ public class MvcTest {
 
     @Test
     void callingWithBookShouldReturnAllBookAsJson() throws Exception{
-        when(service.getAllBooks()).thenReturn(List.of(new BookDto(1,"","",
+        when(service.getAllBooks()).thenReturn(List.of(new BookDto(1,"", "",
                 1, Date.valueOf("2000-01-01"), "")));
 
         var result = mockMvc.perform(MockMvcRequestBuilders.get("/Böcker")

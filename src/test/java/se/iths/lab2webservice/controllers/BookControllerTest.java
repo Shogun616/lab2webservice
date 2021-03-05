@@ -17,7 +17,7 @@ public class BookControllerTest {
 
         assertThat(book.getIsbn13()).isEqualTo(1);
         assertThat(book.getTitel()).isEqualTo("test");
-        assertThat(book.getSpråk()).isEqualTo("test");
+        assertThat(book.getLanguage()).isEqualTo("test");
         assertThat(book.getPris()).isEqualTo(1);
         assertThat(book.getUtgivningsdatum()).isEqualTo("2000-01-01");
         assertThat(book.getKategori()).isEqualTo("test");

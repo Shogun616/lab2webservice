@@ -58,9 +58,9 @@ public class BookController {
     public ResponseEntity<List<BookDto>> searchBooks(@SearchSpec Specification<BookDto> specification){
             return service.searchBooks(specification);
     }
-
-    @GetMapping(value = "/Böcker/search={search}")
-    public List<BookDto> searchByCategoryOrLanguageOrTitle(@PathVariable String search){
-        return service.searchByCategoryOrLanguageOrTitle(search);
-    }
+//
+//    @GetMapping(value = "/Böcker/search={search}")
+//    public List<BookDto> search(@PathVariable String search){
+//        return service.searchByCategoryOrLanguageOrTitle(search);
+//    }
 }

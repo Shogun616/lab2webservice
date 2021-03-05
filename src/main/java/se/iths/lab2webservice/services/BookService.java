@@ -80,9 +80,9 @@ public class BookService implements se.iths.lab2webservice.services.Service{
         return new ResponseEntity(bookRepository.findAll(Specification.where(specification)), HttpStatus.OK);
     }
 
-
-    @Override
-    public List<BookDto> searchByCategoryOrLanguageOrTitle(String searcher) {
-        return bookMapper.mapp(bookRepository.findAllBySpråkOrKategoriOrTitel(searcher, searcher, searcher));
-    }
+//
+//    @Override
+//    public List<BookDto> search(String search) {
+//        return bookMapper.mapp(bookRepository.findAllByIsbn13orSpråkOrKategoriOrTitelOrPris(search));
+//    }
 }
